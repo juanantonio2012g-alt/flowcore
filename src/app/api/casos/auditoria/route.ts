@@ -1,0 +1,31 @@
+import { NextResponse } from "next/server";
+import { executeAuditoria } from "@/core/application/casos/expediente/auditoria";
+import { serializarAuditoriaResult, serializarErrorCasos } from "@/core/interfaces/api/casos";
+import {
+  createRequestSupabaseClient,
+  extractBearerToken,
+} from "@/lib/supabase/request";
+import { createServerSupabaseServiceRoleClient } from "@/lib/supabase/server";
+
+export async function POST(request: Request) {
+  try {
+    const command = await request.json();
+    const accessToken = extractBearerToken(request.headers.get("authorization"));
+    const supabase =
+      !accessToken && process.env.NODE_ENV === "development"
+        ? createServerSupabaseServiceRoleClient()
+        : createRequestSupabaseClient(request);
+    const result = await executeAuditoria(command, { supabase });
+
+    return NextResponse.json(serializarAuditoriaResult(result), {
+      status: result.ok ? 200 : 400,
+    });
+  } catch (error) {
+    return NextResponse.json(
+      serializarErrorCasos(
+        error instanceof Error ? error.message : "Error inesperado"
+      ),
+      { status: 500 }
+    );
+  }
+}

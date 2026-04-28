@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../../../../.."
+		},
+		{
+			"name": "bot-nomina",
+			"path": "../../../../../../bot-nomina"
+		}
+	],
+	"settings": {}
+}
