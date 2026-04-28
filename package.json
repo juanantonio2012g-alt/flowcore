@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "auth:demo-user": "node scripts/create-opencore-demo-user.mjs",
+    "reset:cases": "node scripts/reset-opencore-cases.mjs",
     "qa:operativa": "node qa-validacion-operativa.mjs",
     "qa:progresion": "node qa-validacion-progresion.mjs",
     "test:unit": "vitest run",

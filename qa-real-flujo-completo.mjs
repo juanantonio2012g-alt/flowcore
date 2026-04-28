@@ -204,8 +204,8 @@ async function fase3RegistrarDiagnostico() {
       payload: {
         problematica_identificada: "Diagnóstico QA - análisis completo realizado usando API oficial",
         causa_probable: "Sistema operativo actualizado, hardware compatible",
-        nivel_certeza: "alta",
-        categoria_caso: "mantenimiento",
+        nivel_certeza: "alto",
+        categoria_caso: "mantenimiento_reparacion",
         solucion_recomendada: "Proceder con cotización",
         producto_recomendado: "Servicio técnico completo",
         proceso_sugerido: "Implementación estándar",
@@ -264,7 +264,7 @@ async function fase4ValidarDiagnostico() {
       diagnostico_id: diagnosticoId,
       payload: {
         resultado_validacion: "validado",
-        fecha_validacion: new Date().toISOString(),
+        fecha_validacion: new Date().toISOString().split('T')[0],
         validado_por: null,
         observacion_validacion: "Validación QA - diagnóstico aprobado para cotización"
       },
@@ -324,7 +324,7 @@ async function fase5RegistrarCotizacion() {
         condiciones: "50% anticipo, 50% entrega",
         observaciones: "Cotización generada por QA usando API oficial",
         monto: 150000,
-        estado: "emitida",
+        estado: "enviada",
         proxima_accion: "Esperar aprobación del cliente",
         proxima_fecha: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
       },
@@ -379,7 +379,7 @@ async function fase6RegistrarSeguimiento() {
       caso_id: casoId,
       accion: "registrar_seguimiento",
       payload: {
-        tipo_seguimiento: "comercial",
+        tipo_seguimiento: "llamada",
         resultado: "Cliente aprobó la cotización - QA test usando API oficial",
         proximo_paso: "Iniciar logística de entrega",
         proxima_fecha: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
